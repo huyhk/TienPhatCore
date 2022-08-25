@@ -1,0 +1,171 @@
+﻿body {
+    background: url(images/bg.jpg) no-repeat top center;
+    background-size: cover;
+}
+
+.form-bg {
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    border-radius: 9px;
+    /* margin: 36px auto 0; */
+    /* background: url(images/form-bg.png) top left; */
+    /* padding: 8px 0 0 8px; */
+}
+
+.form-login, .form-reset {
+    /* width: 376px; */
+    /* height: 253px; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 390px;
+}
+
+    .form-login form {
+       
+    }
+
+.form-reset {
+}
+
+    .form-reset form {
+    }
+
+.form-bg {
+    background: #fff url(images/bg_form.jpg) repeat-x top left;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: 0px 1px 3px 2px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0px 1px 3px 2px rgba(0,0,0,0.1);
+    box-shadow: 0px 1px 3px 2px rgba(0,0,0,0.1);
+}
+
+    .form-bg form h2 {
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        line-height: 45px;
+        margin-bottom: 24px;
+        margin-top: 0;
+        background: #007bff;
+        text-align: center;
+    }
+
+.form-bg input[type="text"], .form-bg input[type="password"] {
+    width: 100%;
+    height: 38px;
+    padding: 0 10px 0 55px;
+    margin: 0 auto;
+    color: #aeaeae;
+    border: 1px solid #bec2c4;
+    display: block;
+}
+
+    .form-bg input[type="text"]:focus, .form-bg input[type="password"]:focus {
+        box-shadow: 0px 0px 0px 4px #e0f1fc;
+        border: 1px solid #7dc6dd;
+    }
+
+.form-bg input[type="checkbox"] {
+    vertical-align: middle;
+    margin-top: 0;
+}
+
+.form-login button {
+}
+
+  
+
+    .form-login button:active {
+        background: url(images/login_active.png) no-repeat;
+    }
+
+.form-reset button {
+    background: url(images/reset.png) no-repeat;
+}
+/*.form-reset button:hover
+    {
+        background: url(images/reset_hover.png) no-repeat;
+    }
+    .form-reset button:active
+    {
+         background: url(images/reset_active.png) no-repeat;
+    }*/
+.form-bg button {
+    background: #007bff;
+    color: #fff;
+    border: 0px;
+    padding: 8px 20px;
+    border-radius: 4px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+    .form-bg button:hover {
+        background: #166fce;
+    }
+
+    .form-bg button:active {
+       
+    }
+
+
+.form-bg label {
+    display: block;
+    margin-left: 18px;
+    font-weight: normal !important; 
+    vertical-align: middle;
+}
+
+    .form-bg label span {
+        color: #555555;
+        font-size: 12px;
+    }
+
+.form-bg p {
+    margin: 15px;
+}
+    .form-bg p.logined {
+        text-align: center;
+        margin: 0;
+    }
+p.forgot {
+    text-align: center;
+    font-size: 13px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+    p.forgot a {
+        text-decoration: none;
+    }
+
+.form-bg p.forgot a:hover {
+    color: #007bff;
+    text-decoration:underline;
+}
+
+.notice, .notice .validation-summary-errors {
+    color: yellow;
+    text-align: center;
+}
+
+    .notice .validation-summary-errors ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+input.username {
+    background: #fefefe url(images/username_icons.png) no-repeat 10px 50% !important;
+}
+
+input.password {
+    background: #fefefe url(images/pass_icons.png) no-repeat 12px 50%;
+}
+
+input.email {
+    background: #fefefe url(images/email_icons.png) no-repeat 10px 50% !important;
+}

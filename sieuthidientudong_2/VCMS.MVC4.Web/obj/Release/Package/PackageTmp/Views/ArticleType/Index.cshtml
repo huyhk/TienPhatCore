@@ -1,0 +1,15 @@
+﻿@model ICollection<VCMS.MVC4.Data.Article>
+@{
+    ViewBag.Title = ViewBag.ArticleType.Name;
+    var ly = ViewBag.ArticleTypeId;
+    if (ly == 2)
+    {
+        Layout = "~/Templates/viennam/Views/Shared/_LayoutFull.cshtml";
+    }
+
+    ViewBag.Breadcrumb = new BreadcrumbModel { Items = new List<BreadcrumbItem> { new BreadcrumbItem { Text = ViewBag.ArticleType.Name, Url = null, IsLast = true } } };
+}
+
+<h1>@ViewBag.ArticleType.Name</h1>
+@Html.Partial("~/Views/Article/_List.cshtml", Model)
+@Html.Pager(new PagerOptions{VisibleItemCount=15, ItemCount=ViewBag.ItemCount,PageSize=20},null)
