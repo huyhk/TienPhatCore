@@ -17,22 +17,22 @@
                 <ul id="accordion" class="category-accordion category-menu list-group accordion">
                     @foreach (var item in category)
                     {
-                    <li class="list-group-item accordion-group first parent">
-                        <a href="@Url.Action("Detail", "Category", new { id = item.Id, code = item.ArticleType.UrlFriendly, title = Unichar.UnicodeStrings.UrlString(item.CategoryName).ToLower() })" title="@item.CategoryName">@*<i class="fa fa-yelp"></i>*@ @item.CategoryName</a>
-                        @if (Model.ShowSubMenu && item.ChildrenCount > 0)
-                        {
-                            <div class="child">
-                                @*<a data-toggle="collapse" data-parent="#accordion" data-target="#cate-@item.Id" class="subcart collapsed"></a>*@
-                                <ul id="cate-@item.Id" class="collapse accordion-body">
-                                    @foreach (var sub in item.Children)
-                                    {
-                                        <li class="list-group-item">
-                                            <a href="@Url.Action("Detail", "Category", new { id = sub.Id, code = sub.ArticleType.UrlFriendly, title = Unichar.UnicodeStrings.UrlString(sub.CategoryName).ToLower() })" title="@sub.CategoryName">@*<i class="fa fa-caret-right"></i>*@ @sub.CategoryName</a>
-                                        </li>
-                                    }
-                                </ul>
+                        <li class="list-group-item accordion-group first parent">
+                            <a href="@Url.Action("Detail", "Category", new { id = item.Id, code = item.ArticleType.UrlFriendly, title = Unichar.UnicodeStrings.UrlString(item.CategoryName).ToLower() })" title="@item.CategoryName">@*<i class="fa fa-yelp"></i>*@ @item.CategoryName</a>
+                            @if (Model.ShowSubMenu && item.ChildrenCount > 0)
+                            {
+                                <div class="child">
+                                    @*<a data-toggle="collapse" data-parent="#accordion" data-target="#cate-@item.Id" class="subcart collapsed"></a>*@
+                                    <ul id="cate-@item.Id" class="collapse accordion-body">
+                                        @foreach (var sub in item.Children)
+                                        {
+                                            <li class="list-group-item">
+                                                <a href="@Url.Action("Detail", "Category", new { id = sub.Id, code = sub.ArticleType.UrlFriendly, title = Unichar.UnicodeStrings.UrlString(sub.CategoryName).ToLower() })" title="@sub.CategoryName">@*<i class="fa fa-caret-right"></i>*@ @sub.CategoryName</a>
+                                            </li>
+                                        }
+                                    </ul>
                                 </div>
-                                }
+                            }
                         </li>
                     }
                 </ul>
@@ -41,20 +41,23 @@
     }
     @*}*@
 
-}
-<script type="text/javascript">
-            $(function () {
-                // whenever we hover over a menu item that has a submenu
-                $('li.parent').on('mouseover', function () {
-                    var $menuItem = $(this),
-                        $submenuWrapper = $('> .child', $menuItem);
-                    // grab the menu item's position relative to its positioned parent
-                    var menuItemPos = $menuItem.position();
-                    // place the submenu in the correct position relevant to the menu item
-                    $submenuWrapper.css({
-                        top: menuItemPos.top,
-                        left: menuItemPos.left + Math.round($menuItem.outerWidth() * 1)
-                    });
+}`
+@using (Html.BeginScripts())
+{
+    <script type="text/javascript">
+        $(function () {
+            // whenever we hover over a menu item that has a submenu
+            $('li.parent').on('mouseover', function () {
+                var $menuItem = $(this),
+                    $submenuWrapper = $('> .child', $menuItem);
+                // grab the menu item's position relative to its positioned parent
+                var menuItemPos = $menuItem.position();
+                // place the submenu in the correct position relevant to the menu item
+                $submenuWrapper.css({
+                    top: menuItemPos.top,
+                    left: menuItemPos.left + Math.round($menuItem.outerWidth() * 1)
                 });
             });
-</script>
+        });
+    </script>
+}

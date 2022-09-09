@@ -3,7 +3,7 @@
     var temp = (List<Article>)ViewBag.HomeArticle;
     //var cate = Category.GetTree(Category.GetByType((int)Model.ArticleTypeId, SiteConfig.LanguageId)).Where(a => a.Level == 0).ToList();
     //var cate = Category.GetTree(Category.GetByType((int)Model.ArticleTypeId, SiteConfig.LanguageId, 0, CategoryFlags.NEW)).Where(a => a.Level == 0).ToList();
-   // var temp = Article.GetByCategories(cate.Select(c => c.Id).ToArray(), SiteConfig.LanguageId, Model.Attribute, Model.Number, ArticleSortOrder.ARTICLE_NAME, VCMS.MVC4.Data.SortDirection.ASCENDING, ArticleIncludeFlags.ARTICLE_TYPE | ArticleIncludeFlags.DISCOUNTS | ArticleIncludeFlags.PRICES | ArticleIncludeFlags.PROPERTIES).ToList();
+    // var temp = Article.GetByCategories(cate.Select(c => c.Id).ToArray(), SiteConfig.LanguageId, Model.Attribute, Model.Number, ArticleSortOrder.ARTICLE_NAME, VCMS.MVC4.Data.SortDirection.ASCENDING, ArticleIncludeFlags.ARTICLE_TYPE | ArticleIncludeFlags.DISCOUNTS | ArticleIncludeFlags.PRICES | ArticleIncludeFlags.PROPERTIES).ToList();
     var i = 1;
     //var type = ArticleType.GetById((int)Model.ArticleTypeId, SiteConfig.LanguageId);
     <div class="box-product-tab">
@@ -12,7 +12,7 @@
             if (temp.Count > 0)
             {
                 var lst = temp.Where(a => a.CurrentCategory.Id == sitem.Id).ToArray();
-				<!-- toArray -->
+                <!-- toArray -->
                 <div class="citem">
                     <ul class="c-header hidden-xs ">
                         <li>
@@ -53,21 +53,23 @@
                                 </li>
                             }
                         </ul>
-                    </div>
-                    <script>
+                    </div>@using (Html.BeginScripts())
+                    {
+                        <script>
                 $(document).ready(function(){
                   $(".down-@i").click(function(){
                       $(".list-@i").slideToggle();
                   });
                 });
-                    </script>
+                        </script>
+                    }
                     <div class="clearfix"></div>
                     <div class="row">
                         <div class="left-dmsp">
                             @foreach (var item in lst)
-							
+
                             {
-								
+
                                 var code = item["CODE"];
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                                     <div class="items">
@@ -136,38 +138,40 @@
 }
 @Html.Partial("_HelpFull")
 
+@using (Html.BeginScripts())
+{
+    <script>
+        jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantitynum input');
+        jQuery('.quantitynum').each(function () {
+            var spinner = jQuery(this),
+                input = spinner.find('input[type="number"]'),
+                btnUp = spinner.find('.quantity-up'),
+                btnDown = spinner.find('.quantity-down'),
+                min = input.attr('min'),
+                max = input.attr('max');
 
-<script>
-    jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantitynum input');
-    jQuery('.quantitynum').each(function () {
-        var spinner = jQuery(this),
-            input = spinner.find('input[type="number"]'),
-            btnUp = spinner.find('.quantity-up'),
-            btnDown = spinner.find('.quantity-down'),
-            min = input.attr('min'),
-            max = input.attr('max');
+            btnUp.click(function () {
+                var oldValue = parseFloat(input.val());
+                if (oldValue >= max) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue + 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
 
-        btnUp.click(function () {
-            var oldValue = parseFloat(input.val());
-            if (oldValue >= max) {
-                var newVal = oldValue;
-            } else {
-                var newVal = oldValue + 1;
-            }
-            spinner.find("input").val(newVal);
-            spinner.find("input").trigger("change");
+            btnDown.click(function () {
+                var oldValue = parseFloat(input.val());
+                if (oldValue <= min) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue - 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
+
         });
-
-        btnDown.click(function () {
-            var oldValue = parseFloat(input.val());
-            if (oldValue <= min) {
-                var newVal = oldValue;
-            } else {
-                var newVal = oldValue - 1;
-            }
-            spinner.find("input").val(newVal);
-            spinner.find("input").trigger("change");
-        });
-
-    });
-</script>
+    </script>
+}

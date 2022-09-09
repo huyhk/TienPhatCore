@@ -70,11 +70,14 @@
                                 }
                             </div>
                         </div>
-                        <script>
-                            $(".nav-tabs li:first").addClass("active");
-                            $(".tab-content .tab-pane:first").addClass("active");
-                        </script>
-                    </div>
+                        @using (Html.BeginScripts())
+                        {
+                            <script>
+                                $(".nav-tabs li:first").addClass("active");
+                                $(".tab-content .tab-pane:first").addClass("active");
+                            </script>
+                        }
+                        </div>
 
                     <div class="col-xs-12 toolbar">
                         <a href="/Account/Index" class="btn btn-continue btn-next"><i class="fa fa-angle-left"></i> @Html.Locale("account_back")</a>

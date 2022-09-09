@@ -14,6 +14,7 @@ namespace VCMS.MVC4.Extensions
         {
             
             response.Content = String.Empty;
+            //context.HttpContext.Response.AddHeader("Content-Encoding", "gzip");
 
             Regex pattern = new Regex(@"url\s*\(\s*([""']?)([^:)]+)\1\s*\)", RegexOptions.IgnoreCase);
             // open each of the files
@@ -78,5 +79,6 @@ namespace VCMS.MVC4.Extensions
             Transforms.Add(new RelativePathResolverTransform());
             Transforms.Add(new CssMinify());
         }
+        
     }
 }

@@ -79,7 +79,11 @@ namespace VCMS.MVC4.Web
             {
                 var f = new DirectoryInfo(folder).Name;
                 if (Directory.Exists(Path.Combine(folder, "Content")))
+                {
                     bundles.Add(new LessMinify.LessBundle("~/templates/" + f + "/Content/Less").Include("~/Templates/" + f + "/Content/App.less"));
+
+                    bundles.Add(new LessMinify.LessBundle("~/templates/" + f + "/Content/Bootstrap").Include("~/Templates/" + f + "/Content/Less/bootstrap.less"));
+                }
             }
             foreach (var folder in folders)
             {
@@ -154,6 +158,8 @@ namespace VCMS.MVC4.Web
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            BundleTable.EnableOptimizations = true;
         }
 
         private static void RegisterJsBundles(BundleCollection bundles)

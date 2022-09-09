@@ -75,18 +75,15 @@
 
 }
 @*@Html.Partial("_HelpFull")*@
-<script>
+@using (Html.BeginScripts())
+{
+    <script>
     $(document).ready(function () {
         $(".ico-down").click(function () {
             $(this).next("ul").slideToggle();
         });
     });
-</script>
-
-<script>
-
-</script>
-<script>
+   
     let firedEvents = [];
 
     $(window).scroll(function () {
@@ -101,8 +98,8 @@
                 var img = rd.find("img.image-loader");
                 img.css("opacity", "0");
 
-                $.ajax({  
-                    type: 'get', 
+                $.ajax({
+                    type: 'get',
                     url: $(this).data("load"),
                     dataType: 'json',
                     beforeSend: function () {
@@ -124,4 +121,5 @@
     });
 
 
-</script>
+    </script>
+}

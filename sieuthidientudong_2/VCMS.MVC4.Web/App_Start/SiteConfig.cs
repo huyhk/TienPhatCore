@@ -21,18 +21,19 @@ namespace VCMS.MVC4.Web
         {
             get
             {
-                if (HttpContext.Current.Items["SITE_INFO"] == null)
+                
+                if (HttpContext.Current.Application["SITE_INFO"] == null)
                 {
                     //int siteID = SiteId;
-                    if (HttpContext.Current.Items["SITE_INFO"] == null)
+                    if (HttpContext.Current.Application["SITE_INFO"] == null)
                     {
                         using (DataContext db = new DataContext())
                         {
-                            HttpContext.Current.Items["SITE_INFO"] = db.Websites.Include(s => s.WebsiteDetail).Include(s => s.Settings.Select(sc => sc.WebsiteConfig)).Include(s => s.Languages).FirstOrDefault();
+                            HttpContext.Current.Application["SITE_INFO"] = db.Websites.Include(s => s.WebsiteDetail).Include(s => s.Settings.Select(sc => sc.WebsiteConfig)).Include(s => s.Languages).FirstOrDefault();
                         }
                     }
                 }
-                return HttpContext.Current.Items["SITE_INFO"] as Website;
+                return HttpContext.Current.Application["SITE_INFO"] as Website;
             }
         }
         public static ICollection<Language> Languages
@@ -43,13 +44,13 @@ namespace VCMS.MVC4.Web
         {
             get
             {
-                if (HttpContext.Current.Items["ArticleTypes"] == null)
+                if (HttpContext.Current.Application["ArticleTypes"] == null)
                 {
 
-                    HttpContext.Current.Items["ArticleTypes"] = ArticleType.GetBySite(SiteConfig.LanguageId);
+                    HttpContext.Current.Application["ArticleTypes"] = ArticleType.GetBySite(SiteConfig.LanguageId);
 
                 }
-                return HttpContext.Current.Items["ArticleTypes"] as ICollection<ArticleType>;
+                return HttpContext.Current.Application["ArticleTypes"] as ICollection<ArticleType>;
             }
 
         }
@@ -68,7 +69,7 @@ namespace VCMS.MVC4.Web
         //                if (site != null)
         //                {
         //                    HttpContext.Current.Application["SITE_ID"] = site.Id;
-        //                    HttpContext.Current.Items["SITE_INFO"] = site;
+        //                    HttpContext.Current.Application["SITE_INFO"] = site;
         //                }
 
         //                else

@@ -22,37 +22,40 @@
     }
 }
 <script src="~/Content/Plugin/NivoSlider/vnponline.js"></script>
-<script>
-    var current = 0;
-    $('.slide-bg').nivoSlider({
-        effect: 'fold',
-        prevText: 'prev',
-        nextText: 'next',
-        slices: 25,
-        boxCols: 25,
-        boxRows: 24,
-        pauseOnHover: false,
-        animSpeed: 1000,
-        pauseTime: 8000,
-        startSlide: 0,
-        beforeChange: function () {
-            $('.content-slide').animate({ 'opacity': 0 }, 600, 'linear');
+@using (Html.BeginScripts())
+{
+    <script>
+        var current = 0;
+        $('.slide-bg').nivoSlider({
+            effect: 'fold',
+            prevText: 'prev',
+            nextText: 'next',
+            slices: 25,
+            boxCols: 25,
+            boxRows: 24,
+            pauseOnHover: false,
+            animSpeed: 1000,
+            pauseTime: 8000,
+            startSlide: 0,
+            beforeChange: function () {
+                $('.content-slide').animate({ 'opacity': 0 }, 600, 'linear');
 
-        },
-        afterChange: function () {
-            //  $('.content-slide').removeClass('show');
-            current = $('.slide-bg').data('nivo:vars').currentSlide;
-            $('.content-slide').removeAttr('style');
-            $('.content-slide').removeClass('show');
-            $('.bg-home:eq(' + current + ') .content-slide').addClass('show');
-        },
-        afterLoad: function () {
-            current = $('.slide-bg').data('nivo:vars').currentSlide;
+            },
+            afterChange: function () {
+                //  $('.content-slide').removeClass('show');
+                current = $('.slide-bg').data('nivo:vars').currentSlide;
+                $('.content-slide').removeAttr('style');
+                $('.content-slide').removeClass('show');
+                $('.bg-home:eq(' + current + ') .content-slide').addClass('show');
+            },
+            afterLoad: function () {
+                current = $('.slide-bg').data('nivo:vars').currentSlide;
 
-            $('.bg-home:eq(' + current + ') .content-slide').addClass('show');
-        }
+                $('.bg-home:eq(' + current + ') .content-slide').addClass('show');
+            }
 
 
 
-    });
-</script>
+        });
+    </script>
+}

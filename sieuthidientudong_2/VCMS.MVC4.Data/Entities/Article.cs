@@ -47,7 +47,7 @@ namespace VCMS.MVC4.Data
         public int? UserLastUpdated { get; set; }
         [MaxLength(200)]
         [Display(Name = "Image Url")]
-
+        public string Code { get; set; }
         public string ImageUrl { get; set; }
         public string Time { get; set; }
         public int? timeId { get; set; }

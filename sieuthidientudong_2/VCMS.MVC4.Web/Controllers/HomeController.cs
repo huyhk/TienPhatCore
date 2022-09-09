@@ -845,9 +845,7 @@ namespace VCMS.MVC4.Web.Controllers
                 return View();
             }
         }
-        [EmptyLineFilter]
-        public ActionResult 
-            SiteMap()
+        public ActionResult             SiteMap()
         {
             using (DataContext db = new DataContext())
             {

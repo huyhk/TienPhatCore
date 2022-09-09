@@ -506,7 +506,7 @@ namespace VCMS.MVC4.Web.Controllers
                 if (num > 0)
                     pageSize = num;
             }
-            var model = Article.GetByCategory(categoryId, SiteConfig.LanguageId, pageIndex: pageIndex, pageSize: pageSize, sortOrder: sortOrder, direction: direction, option: ArticleSearchOption.ALL, includeChildren: false);
+            var model = new ArticleResult();
             if (!string.IsNullOrEmpty(Request["brands"]))
             {
                 var ids = Request["brands"].Split('.').Select(Int32.Parse).ToArray();
@@ -514,59 +514,76 @@ namespace VCMS.MVC4.Web.Controllers
                 model.List = lst.ToList();
                 model.TotalItemCount = Article.CountByCategories(ids, SiteConfig.LanguageId);
             }
+            else
+            {
+                model = Article.GetByCategory(categoryId, SiteConfig.LanguageId, pageIndex: pageIndex, pageSize: pageSize, sortOrder: sortOrder, direction: direction, option: ArticleSearchOption.ALL, includeChildren: false);
+            }
             ViewBag.ViewPath = viewPath;
             return PartialView(model);
         }
 
         public ActionResult ViewByType(int typeId, string viewPath = "", ArticleFlags Flag = ArticleFlags.ACTIVE, int pageIndex = 1, int pageSize = 15, ArticleSortOrder sortOrder = ArticleSortOrder.SORT_ORDER, SortDirection direction = SortDirection.DESCENDING, ArticleIncludeFlags includeFlags = ArticleIncludeFlags.ARTICLE_DETAIL | ArticleIncludeFlags.ARTICLE_TYPE | ArticleIncludeFlags.PROPERTIES)
         {
-            var db = new DataContext();
-            var type = ArticleType.GetById(typeId, SiteConfig.LanguageId);
-            ViewBag.Type = type;
-            if (!string.IsNullOrEmpty(Request["sortorder"]))
-                sortOrder = (ArticleSortOrder)Enum.Parse(typeof(ArticleSortOrder), Request["sortorder"]);
-
-            if (!string.IsNullOrEmpty(Request["sortdirection"]))
-                direction = (SortDirection)Enum.Parse(typeof(SortDirection), Request["sortdirection"]);
-
-            if (!string.IsNullOrEmpty(Request["num"]))
+            using (var db = new DataContext())
             {
-                var num = Convert.ToInt32(Request["num"]);
-                if (num > 0)
-                    pageSize = num;
-            }
-            if (!string.IsNullOrEmpty(Request["page"]))
-            {
-                var num = Convert.ToInt32(Request["page"]);
-                if (num > 0)
-                    pageIndex = num;
-            }
-            if (!string.IsNullOrEmpty(Request["flag"]))
-            {
-                if (Request["flag"] == "all")
-                    Flag = ArticleFlags.ACTIVE | ArticleFlags.INACTIVE;
-                else
-                    Flag = (ArticleFlags)Enum.Parse(typeof(ArticleFlags), Request["flag"]);
-            }
-            //var model = Article.GetByType(typeId, SiteConfig.LanguageId, flags: Flag, pageIndex: pageIndex, pageSize: pageSize, sortOrder: sortOrder, direction: direction, includeflags: includeFlags, resultFlag: ArticleResultFlags.ALL);
-            var items = db.Articles.Include(a => a.ArticleDetail).Include(a => a.ArticleType.ArticleTypeDetail).Where(a => a.ArticleTypeId == typeId).OrderBy(a => a.SortOrder).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                var type = ArticleType.GetById(typeId, SiteConfig.LanguageId);
+                ViewBag.Type = type;
+                if (!string.IsNullOrEmpty(Request["sortorder"]))
+                    sortOrder = (ArticleSortOrder)Enum.Parse(typeof(ArticleSortOrder), Request["sortorder"]);
 
-            if (typeId == 1)
-                items = db.Articles.Include(a => a.ArticleDetail).Include(a => a.ArticleType.ArticleTypeDetail).Where(a => a.ArticleTypeId == typeId).OrderByDescending(a => a.DateCreated).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            if (typeId == 2)
-            {
-                items = db.Articles
-                .Include(a => a.ArticleDetail)
-                .Include(a => a.ArticleType.ArticleTypeDetail)
-                .Include(a => a.Prices.Select(p => p.Currency))
-                .Include(a => a.PropertyValues.Select(p => p.Property))
-                .Where(a => a.ArticleTypeId == typeId).OrderBy(a => a.SortOrder).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            }
-            var count = db.Articles.Include(a => a.ArticleType).Where(a => a.ArticleTypeId == typeId).Count();
-            var model = new ArticleResult { TotalItemCount = count, List = items, PageIndex = pageIndex, PageSize = pageSize };
+                if (!string.IsNullOrEmpty(Request["sortdirection"]))
+                    direction = (SortDirection)Enum.Parse(typeof(SortDirection), Request["sortdirection"]);
 
-            ViewBag.ViewPath = viewPath;
-            return PartialView(model);
+                if (!string.IsNullOrEmpty(Request["num"]))
+                {
+                    var num = Convert.ToInt32(Request["num"]);
+                    if (num > 0)
+                        pageSize = num;
+                }
+                if (!string.IsNullOrEmpty(Request["page"]))
+                {
+                    var num = Convert.ToInt32(Request["page"]);
+                    if (num > 0)
+                        pageIndex = num;
+                }
+                if (!string.IsNullOrEmpty(Request["flag"]))
+                {
+                    if (Request["flag"] == "all")
+                        Flag = ArticleFlags.ACTIVE | ArticleFlags.INACTIVE;
+                    else
+                        Flag = (ArticleFlags)Enum.Parse(typeof(ArticleFlags), Request["flag"]);
+                }
+                //var model = Article.GetByType(typeId, SiteConfig.LanguageId, flags: Flag, pageIndex: pageIndex, pageSize: pageSize, sortOrder: sortOrder, direction: direction, includeflags: includeFlags, resultFlag: ArticleResultFlags.ALL);
+                var query = db.Articles.Include(a => a.ArticleDetail)
+                    //.Include(a => a.ArticleType.ArticleTypeDetail)
+                    .OrderBy(a => a.SortOrder).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+                //var items = db.Articles.Include(a => a.ArticleDetail)
+                //    .Include(a => a.ArticleType.ArticleTypeDetail)
+                //    .Where(a => a.ArticleTypeId == typeId)
+                //    .OrderBy(a => a.SortOrder).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+                if (typeId == 1)
+                    query = db.Articles.Include(a => a.ArticleDetail)
+                        //.Include(a => a.ArticleType.ArticleTypeDetail)
+                        .Where(a => a.ArticleTypeId == typeId)
+                        .OrderByDescending(a => a.DateCreated)
+                        .Skip((pageIndex - 1) * pageSize).Take(pageSize);//.ToList();
+                if (typeId == 2)
+                {
+                    query = db.Articles
+                    .Include(a => a.ArticleDetail)
+                    //.Include(a => a.ArticleType.ArticleTypeDetail)
+                    .Include(a => a.Prices.Select(p => p.Currency))
+                    .Include(a => a.PropertyValues.Select(p => p.Property))
+                    .Where(a => a.ArticleTypeId == typeId).OrderBy(a => a.SortOrder).Skip((pageIndex - 1) * pageSize).Take(pageSize);//.ToList();
+                }
+                var count = db.Articles.Include(a => a.ArticleType).Where(a => a.ArticleTypeId == typeId).Count();
+                var model = new ArticleResult { TotalItemCount = count, List = query.ToList(), PageIndex = pageIndex, PageSize = pageSize };
+
+                ViewBag.ViewPath = viewPath;
+                return PartialView(model);
+            }
         }
 
         //public ActionResult ViewByDiscount(int typeId, string viewPath = "", int pageIndex = 1, int pageSize = 20, ArticleSortOrder sortOrder = ArticleSortOrder.SORT_ORDER, SortDirection direction = SortDirection.DESCENDING)
