@@ -125,3 +125,12 @@ D:\viennam\sieuthidientudong_2\VCMS.MVC4.WebBase\obj\Release\VCMS.MVC4.WebBase.c
 D:\viennam\sieuthidientudong_2\VCMS.MVC4.WebBase\obj\Release\VCMS.MVC4.WebBase.csproj.CopyComplete
 D:\viennam\sieuthidientudong_2\VCMS.MVC4.WebBase\obj\Release\VCMS.MVC4.WebBase.dll
 D:\viennam\sieuthidientudong_2\VCMS.MVC4.WebBase\obj\Release\VCMS.MVC4.WebBase.pdb
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.WebBase\bin\Release\VCMS.MVC4.WebBase.dll
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.WebBase\bin\Release\VCMS.MVC4.WebBase.pdb
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.WebBase\bin\Release\System.Web.Mvc.dll
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.WebBase\bin\Release\System.Web.Mvc.xml
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.WebBase\obj\Release\VCMS.MVC4.WebBase.csproj.AssemblyReference.cache
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.WebBase\obj\Release\VCMS.MVC4.WebBase.csproj.CoreCompileInputs.cache
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.WebBase\obj\Release\VCMS.MVC4.WebBase.csproj.CopyComplete
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.WebBase\obj\Release\VCMS.MVC4.WebBase.dll
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.WebBase\obj\Release\VCMS.MVC4.WebBase.pdb

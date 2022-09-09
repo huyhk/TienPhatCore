@@ -62,7 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DapperContext.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\ArticleFile.cs">
@@ -96,7 +95,6 @@
     <Compile Include="Global.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ArticleDapper.cs" />
     <Compile Include="Services\ArticleSearchExtensions.cs" />
     <Compile Include="Services\ArticleSearchOption.cs" />
     <Compile Include="Services\ArticleService.cs" />

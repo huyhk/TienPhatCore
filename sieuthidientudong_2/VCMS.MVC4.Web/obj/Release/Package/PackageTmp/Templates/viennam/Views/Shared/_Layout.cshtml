@@ -43,13 +43,12 @@
     </script>
     @Styles.Render(string.Format("~/templates/{0}/Content/{1}", SiteConfig.SiteInfo.Code, SiteConfig.SiteInfo.Skin))
     @RenderSection("styles", required: false)
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/Pager")
+   
     @*<link rel="stylesheet" href="~/Content/Plugin/HoverEffectIdeas/set2.css" />*@
     @Html.Setting("goana")
 </head>
 <body class="dual-sidebar @SiteConfig.SiteInfo.Skin language-@SiteConfig.LanguageId">
-     @Html.Setting("body_script")
+    @Html.Setting("body_script")
     @Html.Partial("_HeaderTop")
     @Html.Partial("_MenuTop")
     <div id="page">
@@ -66,6 +65,22 @@
     </div>
     <section id="sys-notification" style="opacity: 0;"></section>
     <div id="message" style="display:none;">Đã thêm vào giỏ hàng</div>
+
+    @Html.Partial("_Call")
+    @Html.Partial("_ScrollTop")
+    @*@Html.Setting("CHATONLINE")*@
+    @Html.Partial("_LRSocial")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/Pager")
+    @Scripts.Render("~/bundles/Slider")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/vcms")
+    <!--[if lt IE 9]>
+    @Scripts.Render("~/bundles/Fixie")
+          <![endif]-->
+    @RenderSection("scripts", required: false)
+
     <script type="text/javascript">
         $(document).ready(function () {
             var productid = $("#id").val();
@@ -90,18 +105,6 @@
             $(this).closest("form").attr("action", "/ShoppingCart/AddToCart");
         });
     </script>
-    @Html.Partial("_Call")
-    @Html.Partial("_ScrollTop")
-    @*@Html.Setting("CHATONLINE")*@
-    @Html.Partial("_LRSocial")
-    @Scripts.Render("~/bundles/Slider")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/vcms")
-    <!--[if lt IE 9]>
-    @Scripts.Render("~/bundles/Fixie")
-          <![endif]-->
-
-    @RenderSection("scripts", required: false)
-
+    @Html.PageScripts()
 </body>
 </html>

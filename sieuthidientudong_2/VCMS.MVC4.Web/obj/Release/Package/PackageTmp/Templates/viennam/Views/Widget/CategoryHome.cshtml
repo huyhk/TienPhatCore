@@ -47,15 +47,18 @@
 
     </div>
 }
-<script>
-    $(function () {
-        $(".box-category li:has(ul.sub-level)").hover(
-           function () {
-               $(this).children("ul.sub-level").show();
-           },
-             function () {
-                 $(this).children("ul.sub-level").hide();
-             }
-        );
-    });
-</script>
+@using (Html.BeginScripts())
+{
+    <script>
+        $(function () {
+            $(".box-category li:has(ul.sub-level)").hover(
+                function () {
+                    $(this).children("ul.sub-level").show();
+                },
+                function () {
+                    $(this).children("ul.sub-level").hide();
+                }
+            );
+        });
+    </script>
+}

@@ -71,49 +71,52 @@
         </div>
     }
     @*if (article_adv.Count > 0)
-    {  
-        <div class="home-ckct box-home">
+        {
+            <div class="home-ckct box-home">
 
 
-            @foreach (var item in article_adv)
-            {
+                @foreach (var item in article_adv)
+                {
 
 
-                <figure>
+                    <figure>
 
-                    @Html.Image(item.ImageUrl.ToLower(), new ImageOptions { Watermark = SiteConfig.WatermarkFill }, new { alt = item.ArticleName })
+                        @Html.Image(item.ImageUrl.ToLower(), new ImageOptions { Watermark = SiteConfig.WatermarkFill }, new { alt = item.ArticleName })
 
-                </figure>
+                    </figure>
 
 
 
-            }
+                }
 
-        </div>
-    }*@
+            </div>
+        }*@
 
 
 }
-<script>
-    $(document).ready(function () {
-        var url = window.location;
-        var element = $('ul.listbrand li a').filter(function () {
-            return this.href == url || url.href.indexOf(this.href) == 0;
-        }).parent().addClass('active');
-        if (element.is('li')) {
-            element.addClass('active').parent().parent('li').addClass('active')
-        }
-    });
-</script>
-@*<script>
-        $(function () {
-            $(".box-category li:has(ul.sub-level)").hover(
-               function () {
-                   $(this).children("ul.sub-level").show();
-               },
-                 function () {
-                     $(this).children("ul.sub-level").hide();
-                 }
-            );
+@using (Html.BeginScripts())
+{
+    <script>
+        $(document).ready(function () {
+            var url = window.location;
+            var element = $('ul.listbrand li a').filter(function () {
+                return this.href == url || url.href.indexOf(this.href) == 0;
+            }).parent().addClass('active');
+            if (element.is('li')) {
+                element.addClass('active').parent().parent('li').addClass('active')
+            }
         });
-    </script>*@
+    </script>
+}
+    @*<script>
+            $(function () {
+                $(".box-category li:has(ul.sub-level)").hover(
+                   function () {
+                       $(this).children("ul.sub-level").show();
+                   },
+                     function () {
+                         $(this).children("ul.sub-level").hide();
+                     }
+                );
+            });
+        </script>*@

@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>C:\Users\Huy\source\repos\core\publish</_PublishTargetUrl>
-    <History>True|2022-09-09T04:12:47.1394115Z;False|2022-09-09T11:11:20.1478536+07:00;True|2022-09-09T10:31:47.7933519+07:00;True|2022-09-09T10:26:05.8000846+07:00;True|2022-09-09T10:23:23.2894110+07:00;True|2022-09-09T10:11:46.5966179+07:00;True|2022-08-27T13:16:25.2575820+07:00;True|2022-08-27T12:24:30.3708529+07:00;True|2022-08-27T12:21:39.5206727+07:00;True|2022-08-27T10:11:28.3257214+07:00;True|2022-08-27T10:00:00.9817596+07:00;True|2022-08-27T09:01:12.9938477+07:00;True|2022-08-27T08:37:10.9829060+07:00;</History>
+    <History>True|2022-09-09T06:26:26.6890492Z;False|2022-09-09T13:11:35.2030273+07:00;True|2022-09-09T11:12:47.1394115+07:00;False|2022-09-09T11:11:20.1478536+07:00;True|2022-09-09T10:31:47.7933519+07:00;True|2022-09-09T10:26:05.8000846+07:00;True|2022-09-09T10:23:23.2894110+07:00;True|2022-09-09T10:11:46.5966179+07:00;True|2022-08-27T13:16:25.2575820+07:00;True|2022-08-27T12:24:30.3708529+07:00;True|2022-08-27T12:21:39.5206727+07:00;True|2022-08-27T10:11:28.3257214+07:00;True|2022-08-27T10:00:00.9817596+07:00;True|2022-08-27T09:01:12.9938477+07:00;True|2022-08-27T08:37:10.9829060+07:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_Readme/Elmah.txt">
@@ -650,46 +650,46 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/25/2022 19:11:23</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Data.dll">
-      <publishTime>09/09/2022 10:11:18</publishTime>
+      <publishTime>09/09/2022 13:23:57</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Data.dll.config">
-      <publishTime>09/08/2022 15:16:36</publishTime>
+      <publishTime>09/09/2022 13:04:42</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Data.pdb">
-      <publishTime>09/09/2022 10:11:18</publishTime>
+      <publishTime>09/09/2022 13:23:57</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Editor.dll">
-      <publishTime>09/09/2022 10:11:20</publishTime>
+      <publishTime>09/09/2022 13:25:35</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Editor.pdb">
-      <publishTime>09/09/2022 10:11:20</publishTime>
+      <publishTime>09/09/2022 13:25:35</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Extensions.dll">
-      <publishTime>09/09/2022 10:05:43</publishTime>
+      <publishTime>09/09/2022 13:25:32</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Extensions.pdb">
-      <publishTime>09/09/2022 10:05:43</publishTime>
+      <publishTime>09/09/2022 13:25:32</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Initializer.dll">
-      <publishTime>09/09/2022 10:11:20</publishTime>
+      <publishTime>09/09/2022 13:24:00</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Initializer.dll.config">
-      <publishTime>09/08/2022 15:17:38</publishTime>
+      <publishTime>09/09/2022 13:02:16</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Initializer.pdb">
-      <publishTime>09/09/2022 10:11:20</publishTime>
+      <publishTime>09/09/2022 13:24:00</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Web.dll">
-      <publishTime>09/09/2022 11:51:17</publishTime>
+      <publishTime>09/09/2022 13:25:45</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.Web.pdb">
-      <publishTime>09/09/2022 11:51:17</publishTime>
+      <publishTime>09/09/2022 13:25:45</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.WebBase.dll">
-      <publishTime>08/27/2022 08:36:14</publishTime>
+      <publishTime>09/09/2022 13:10:38</publishTime>
     </File>
     <File Include="bin/VCMS.MVC4.WebBase.pdb">
-      <publishTime>08/27/2022 08:36:14</publishTime>
+      <publishTime>09/09/2022 13:10:38</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>08/25/2022 19:11:26</publishTime>
@@ -9356,7 +9356,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/09/2022 11:34:54</publishTime>
     </File>
     <File Include="Templates/viennam/Views/Widget/CategoryHome.cshtml">
-      <publishTime>08/25/2022 19:10:02</publishTime>
+      <publishTime>09/09/2022 11:10:02</publishTime>
     </File>
     <File Include="Templates/viennam/Views/Widget/CategoryStyle1.cshtml">
       <publishTime>08/25/2022 19:10:02</publishTime>
@@ -9833,7 +9833,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/25/2022 19:10:05</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/09/2022 10:11:42</publishTime>
+      <publishTime>09/09/2022 13:25:55</publishTime>
     </File>
   </ItemGroup>
 </Project>

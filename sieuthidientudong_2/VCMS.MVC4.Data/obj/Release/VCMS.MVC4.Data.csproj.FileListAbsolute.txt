@@ -181,3 +181,17 @@ D:\viennam\sieuthidientudong_2\VCMS.MVC4.Data\obj\Release\VCMS.MVC4.Data.csproj.
 D:\viennam\sieuthidientudong_2\VCMS.MVC4.Data\obj\Release\VCMS.MVC4.Data.csproj.CopyComplete
 D:\viennam\sieuthidientudong_2\VCMS.MVC4.Data\obj\Release\VCMS.MVC4.Data.dll
 D:\viennam\sieuthidientudong_2\VCMS.MVC4.Data\obj\Release\VCMS.MVC4.Data.pdb
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\obj\Release\VCMS.MVC4.Data.csproj.AssemblyReference.cache
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\obj\Release\VCMS.MVC4.Data.csproj.CoreCompileInputs.cache
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\obj\Release\VCMS.MVC4.Data.dll
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\obj\Release\VCMS.MVC4.Data.pdb
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\bin\Release\VCMS.MVC4.Data.dll.config
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\bin\Release\VCMS.MVC4.Data.dll
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\bin\Release\VCMS.MVC4.Data.pdb
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\bin\Release\Dapper.dll
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\bin\Release\EntityFramework.dll
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\bin\Release\System.Web.Mvc.dll
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\bin\Release\Dapper.xml
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\bin\Release\EntityFramework.xml
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\bin\Release\System.Web.Mvc.xml
+C:\Users\Huy\source\repos\core\sieuthidientudong_2\VCMS.MVC4.Data\obj\Release\VCMS.MVC4.Data.csproj.CopyComplete

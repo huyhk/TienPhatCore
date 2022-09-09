@@ -11,7 +11,7 @@
                         <div class="item">
                             <figure>
                                 <a href="@url" target="_blank">
-                                    @Html.Image(item.ImageUrl.ToLower(), new ImageOptions { Width = 570, Height = 270, Mode = ImageMode.crop, Lazy = false }, new { alt = item.ArticleName, @class = "owl" })
+                                    @Html.Image(item.ImageUrl, new ImageOptions { Width = 570, Height = 270, Mode = ImageMode.crop, Lazy = false }, new { alt = item.ArticleName, @class = "owl" })
                                 </a>
                             </figure>
                         </div>

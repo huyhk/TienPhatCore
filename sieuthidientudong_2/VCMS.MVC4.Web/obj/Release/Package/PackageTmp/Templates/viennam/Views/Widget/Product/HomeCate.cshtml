@@ -11,7 +11,7 @@
             if (temp.Count > 0)
             {
                 var lst = temp.Where(a => a.CurrentCategory.Id == sitem.Id).ToArray();
-				<!-- toArray -->
+                <!-- toArray -->
                 <div class="citem">
                     <ul class="c-header hidden-xs ">
                         <li>
@@ -52,21 +52,23 @@
                                 </li>
                             }
                         </ul>
-                    </div>
-                    <script>
+                    </div>@using (Html.BeginScripts())
+                    {
+                        <script>
                 $(document).ready(function(){
                   $(".down-@i").click(function(){
                       $(".list-@i").slideToggle();
                   });
                 });
-                    </script>
+                        </script>
+                    }
                     <div class="clearfix"></div>
                     <div class="row">
                         <div class="left-dmsp">
                             @foreach (var item in lst)
-							
+
                             {
-								
+
                                 var code = item["CODE"];
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                                     <div class="items">
@@ -134,39 +136,41 @@
 
 }
 @Html.Partial("_HelpFull")
+@using (Html.BeginScripts())
+{
 
+    <script>
+        jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantitynum input');
+        jQuery('.quantitynum').each(function () {
+            var spinner = jQuery(this),
+                input = spinner.find('input[type="number"]'),
+                btnUp = spinner.find('.quantity-up'),
+                btnDown = spinner.find('.quantity-down'),
+                min = input.attr('min'),
+                max = input.attr('max');
 
-<script>
-    jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantitynum input');
-    jQuery('.quantitynum').each(function () {
-        var spinner = jQuery(this),
-            input = spinner.find('input[type="number"]'),
-            btnUp = spinner.find('.quantity-up'),
-            btnDown = spinner.find('.quantity-down'),
-            min = input.attr('min'),
-            max = input.attr('max');
+            btnUp.click(function () {
+                var oldValue = parseFloat(input.val());
+                if (oldValue >= max) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue + 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
 
-        btnUp.click(function () {
-            var oldValue = parseFloat(input.val());
-            if (oldValue >= max) {
-                var newVal = oldValue;
-            } else {
-                var newVal = oldValue + 1;
-            }
-            spinner.find("input").val(newVal);
-            spinner.find("input").trigger("change");
+            btnDown.click(function () {
+                var oldValue = parseFloat(input.val());
+                if (oldValue <= min) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue - 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
+
         });
-
-        btnDown.click(function () {
-            var oldValue = parseFloat(input.val());
-            if (oldValue <= min) {
-                var newVal = oldValue;
-            } else {
-                var newVal = oldValue - 1;
-            }
-            spinner.find("input").val(newVal);
-            spinner.find("input").trigger("change");
-        });
-
-    });
-</script>
+    </script>
+}

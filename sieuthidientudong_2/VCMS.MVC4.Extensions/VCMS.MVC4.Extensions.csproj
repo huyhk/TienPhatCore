@@ -79,7 +79,6 @@
     <Compile Include="BreadcrumbExtensions.cs" />
     <Compile Include="CustomStyleBunlde.cs" />
     <Compile Include="EmtyLineFilter.cs" />
-    <Compile Include="GZipBundle.cs" />
     <Compile Include="HtmlExtensions.cs" />
     <Compile Include="HTMLHelper.cs" />
     <Compile Include="PagerExtensions.cs" />

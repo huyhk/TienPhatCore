@@ -8,9 +8,12 @@
         <span class="ctn" id="tl">192.157</span>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $("#ol").html(onlineLog.Online);
-        $("#tl").html(String(onlineLog.Total).replace(/(.)(?=(\d{3})+$)/g, '$1.'));
-    });
-</script>
+@using (Html.BeginScripts())
+{
+    <script>
+        $(document).ready(function () {
+            $("#ol").html(onlineLog.Online);
+            $("#tl").html(String(onlineLog.Total).replace(/(.)(?=(\d{3})+$)/g, '$1.'));
+        });
+    </script>
+}

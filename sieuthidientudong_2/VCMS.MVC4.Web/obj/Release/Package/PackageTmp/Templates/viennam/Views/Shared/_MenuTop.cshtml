@@ -103,16 +103,19 @@
         </div>
     </div>
 </nav>
-<script>
-    $(document).ready(function () {
-        $(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 50) {
-                    $('#vns-mainnav').addClass("fix");
-                } else {
-                    $('#vns-mainnav').removeClass("fix");
-                }
+@using (Html.BeginScripts())
+{
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 50) {
+                        $('#vns-mainnav').addClass("fix");
+                    } else {
+                        $('#vns-mainnav').removeClass("fix");
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
+}

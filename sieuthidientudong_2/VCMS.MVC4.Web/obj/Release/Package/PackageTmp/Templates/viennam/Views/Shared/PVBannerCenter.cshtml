@@ -18,16 +18,16 @@
                                 <img src="@Url.Content("~/UserUpload/Article/")@item.ImageUrl?height=500" alt="@item.ArticleName" />
                             </a>
                             @*<div class="short-desc">
-                                <div class="name">
-                                    <a href="@url.Value">@item.ArticleName</a>
-                                </div>
-                                <div class="ctn">
-                                    <span>@Html.Raw(VNS.Web.Helpers.HTMLHelper.ReadBlock(item.Description, 50))</span>
-                                </div>
-                                <div class="detail">
-                                    <a href="@url.Value">Xem tiếp</a>
-                                </div>
-                            </div>*@
+                                    <div class="name">
+                                        <a href="@url.Value">@item.ArticleName</a>
+                                    </div>
+                                    <div class="ctn">
+                                        <span>@Html.Raw(VNS.Web.Helpers.HTMLHelper.ReadBlock(item.Description, 50))</span>
+                                    </div>
+                                    <div class="detail">
+                                        <a href="@url.Value">Xem tiếp</a>
+                                    </div>
+                                </div>*@
                         </div>
                     }
                 }
@@ -35,7 +35,9 @@
         }
     }
 }
-<script>
+@using (Html.BeginScripts())
+{
+    <script>
     $(document).ready(function () {
 
         var nav = $('#main-menu');
@@ -60,22 +62,23 @@
             cssEase: 'linear'
         });
     });
-</script>
+    </script>
 
-@*<script>
-        $(document).ready(function () {
-            $('.slider').mouseenter(
+    @*<script>
+            $(document).ready(function () {
+                $('.slider').mouseenter(
 
+                        function () {
+                            $('.slick-prev').show();
+                            $('.slick-next').show();
+                        });
+
+                $('.slider').mouseleave(
                     function () {
-                        $('.slick-prev').show();
-                        $('.slick-next').show();
-                    });
-
-            $('.slider').mouseleave(
-                function () {
-                    $('.slick-prev').hide();
-                    $('.slick-next').hide();
-                }
-                );
-        })
-    </script>*@
+                        $('.slick-prev').hide();
+                        $('.slick-next').hide();
+                    }
+                    );
+            })
+        </script>*@
+}
