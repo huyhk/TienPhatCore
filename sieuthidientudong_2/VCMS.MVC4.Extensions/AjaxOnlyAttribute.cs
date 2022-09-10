@@ -13,8 +13,9 @@ namespace VCMS.MVC4.Extensions
         {
             if (filterContext.HttpContext.Request.IsAjaxRequest())
                 base.OnActionExecuting(filterContext);
-            else
+            else{
                 filterContext.HttpContext.Response.StatusCode = 404;
+            }
         }
         
     }
