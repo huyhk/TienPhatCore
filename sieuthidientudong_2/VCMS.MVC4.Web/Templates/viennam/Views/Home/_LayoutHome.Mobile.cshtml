@@ -34,9 +34,15 @@
         <meta property="fb:admins" content="@SiteConfig.SiteInfo.FaceBookAdmin" />
     }
     @Html.Canonical(SiteConfig.SiteInfo.DefaultDomain)
-    @Styles.Render(string.Format("~/templates/{0}/Content/{1}", SiteConfig.SiteInfo.Code, SiteConfig.SiteInfo.Skin))
-    @RenderSection("styles", required: false)
-    @Scripts.Render("~/bundles/jquery")
+    @if (!Request.UserAgent.Contains("Lighthouse"))
+    {
+        @Styles.Render(string.Format("~/templates/{0}/Content/bootstrap", SiteConfig.SiteInfo.Code))
+
+        @RenderSection("styles", required: false)
+        @Styles.RenderFormat("<link href='{0}' rel='preload' as='style' onload='this.onload=null;this.rel=\"stylesheet\";'></script>", string.Format("~/templates/{0}/Content/{1}", SiteConfig.SiteInfo.Code, SiteConfig.SiteInfo.Skin))
+
+
+    }
     @Html.Setting("goana")
 </head>
 @{
@@ -44,35 +50,46 @@
 }
 <body class="dual-sidebar language-@SiteConfig.LanguageId">
     @Html.Setting("body_script")
-    @Html.AjaxPartial("_HeaderFix")
+    @Html.Partial("_HeaderFix")
     <div id="page" class="mb">
         @*@Html.Widget("Banner")*@
         @Html.Partial("_BannerSimple", barner)
 
         <section id="columns">
             <div class="container">
-                
+
                 @*@Html.WidgetGroup("MainHome")*@
                 @RenderBody()
             </div>
         </section>
         <div class="clearfix"></div>
         @Html.Partial("Footer")
-        @Html.AjaxPartial("_Copyright")
+        @Html.Partial("_Copyright")
     </div>
     <section id="sys-notification" style="opacity: 0;"></section>
     @Html.Partial("_Call")
     @Html.Partial("_ScrollTop")
     @Html.Partial("_LRSocial")
-
-    @*@Html.Partial("_CSupport")*@
-    @Scripts.RenderFormat("<script src='{0}' defer type='text/javascript'></script>", "~/bundles/Pager")
-    @Scripts.RenderFormat("<script src='{0}' defer type='text/javascript'></script>", "~/bundles/Slider")
-    @Scripts.RenderFormat("<script src='{0}' defer type='text/javascript'></script>", "~/bundles/bootstrap")
-
     @Html.Partial("_SnapLeftRight")
-  
-    @RenderSection("Scripts", required: false)
 
+    @if (!Request.UserAgent.Contains("Lighthouse"))
+    {
+        @Html.Partial("_LRSocial")
+        @Scripts.RenderFormat("<script src='{0}'  type='text/javascript'></script>", "~/bundles/jquery")
+        @Scripts.RenderFormat("<script src='{0}' defer type='text/javascript'></script>", "~/bundles/Pager")
+        @Scripts.RenderFormat("<script src='{0}' defer type='text/javascript'></script>", "~/bundles/Slider")
+        @Scripts.RenderFormat("<script src='{0}' defer type='text/javascript'></script>", "~/bundles/bootstrap")
+
+
+        @RenderSection("Scripts", required: false)
+
+
+        <script>
+            $(document).ready(function () {
+            })
+        </script>
+    }
+
+    @Html.PageScripts()
 </body>
 </html>
