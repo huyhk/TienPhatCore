@@ -15,7 +15,7 @@
                                     @if (type.ShowImageInList)
                                     {
                                         <figure>
-                                            <a class="banner-cubic-7" href="@Url.Action("Detail", "Article", new { id = item.Id, code = item.ArticleType.UrlFriendly, title = item.UrlFriendly.ToLower() })" title="@item.ArticleName">
+                                            <a class="banner-cubic-7" href="@Url.Action("Detail", "Article", new { id = item.Id, code = type.UrlFriendly, title = type.UrlFriendly.ToLower() })" title="@item.ArticleName">
                                                 @Html.Image(item.ImageUrl != null ? item.ImageUrl.ToLower() : item.ImageUrl, new ImageOptions { Width = 165, Height = 130, Mode = ImageMode.pad, Lazy = false }, new { alt = item.ArticleName })
                                             </a>
                                         </figure>
@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="infonew col-lg-8 col-md-8 col-xs-8">
                                     <div class="meta">
-                                        <h3><a href="@Url.Action("Detail", "Article", new { id = item.Id, code = item.ArticleType.UrlFriendly, title = item.UrlFriendly.ToLower() })" title="@item.ArticleName">@item.ArticleName</a></h3>
+                                        <h3><a href="@Url.Action("Detail", "Article", new { id = item.Id, code = type.UrlFriendly, title = type.UrlFriendly.ToLower() })" title="@item.ArticleName">@item.ArticleName</a></h3>
                                         @if (type.ShowDateTime)
                                         {
                                             <span class="date">

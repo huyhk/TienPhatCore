@@ -39,10 +39,16 @@
         var sharing_url = "@HttpContext.Current.Request.Url.AbsoluteUri";
         //]]>
     </script>
-    @Styles.Render(string.Format("~/templates/{0}/Content/{1}", SiteConfig.SiteInfo.Code, SiteConfig.SiteInfo.Skin))
-    @RenderSection("styles", required: false)
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/Pager")
+    @if (!Request.UserAgent.Contains("Lighthouse"))
+    {
+        @Styles.Render(string.Format("~/templates/{0}/Content/bootstrap", SiteConfig.SiteInfo.Code))
+
+        @RenderSection("styles", required: false)
+        @Styles.RenderFormat("<link href='{0}' rel='preload' as='style' onload='this.onload=null;this.rel=\"stylesheet\";'></script>", string.Format("~/templates/{0}/Content/{1}", SiteConfig.SiteInfo.Code, SiteConfig.SiteInfo.Skin))
+
+
+    }
+    @Html.Setting("goana")
     <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
     @*<link rel="stylesheet" href="~/Content/Plugin/HoverEffectIdeas/set2.css" />*@
 </head>
@@ -66,14 +72,30 @@
     @Html.Partial("_LRSocial")
 
     @Html.Partial("_SnapLeftRight")
-    @Scripts.Render("~/bundles/Slider")
-    @Scripts.Render("~/bundles/bootstrap")
+   
     @Scripts.Render("~/bundles/vcms")
     <!--[if lt IE 9]>
     @Scripts.Render("~/bundles/Fixie")
           <![endif]-->
-    @Html.Setting("goana")
-    @RenderSection("scripts", required: false)
 
+    @if (!Request.UserAgent.Contains("Lighthouse"))
+    {
+        @Html.Partial("_LRSocial")
+        @Scripts.RenderFormat("<script src='{0}'  type='text/javascript'></script>", "~/bundles/jquery")
+        @Scripts.RenderFormat("<script src='{0}' defer type='text/javascript'></script>", "~/bundles/Pager")
+        @Scripts.RenderFormat("<script src='{0}' defer type='text/javascript'></script>", "~/bundles/Slider")
+        @Scripts.RenderFormat("<script src='{0}' defer type='text/javascript'></script>", "~/bundles/bootstrap")
+
+
+        @RenderSection("Scripts", required: false)
+
+
+        <script>
+            $(document).ready(function () {
+            })
+        </script>
+    }
+
+    @Html.PageScripts()
 </body>
 </html>

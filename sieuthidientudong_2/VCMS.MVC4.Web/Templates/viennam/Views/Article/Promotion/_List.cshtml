@@ -1,11 +1,12 @@
 ﻿@model ArticleResult
 @{
-                /**/
+    /**/
 
-                if (Model.List.Count > 0)
-                {
-                    var type = ViewBag.Type != null ? ViewBag.Type as ArticleType : ArticleType.GetById(Model.List.FirstOrDefault().ArticleType.Id, SiteConfig.LanguageId);
-                    <div class="box-article-list">
+    if (Model.List.Count > 0)
+    {
+        var type = ViewBag.Type != null ? ViewBag.Type as ArticleType : ArticleType.GetById(Model.List.FirstOrDefault().ArticleType.Id, SiteConfig.LanguageId);
+
+        <div class="box-article-list">
                         <h1 class="title">@(ViewBag.Title != null ? ViewBag.Title : type.Name)</h1>
                         <div class="row">
                             @foreach (var item in Model.List)
@@ -17,15 +18,15 @@
                                                 @if (type.ShowImageInList)
                                                 {
                                                     <figure>
-                                                        <a class="banner-cubic-7" href="@Url.Action("Detail", "Article", new { id = item.Id, code = item.ArticleType.UrlFriendly, title = item.UrlFriendly.ToLower() })" title="@item.ArticleName">
-                                                            @Html.Image(item.ImageUrl.ToLower(), new ImageOptions { Width = 258, Height = 170, Mode = ImageMode.crop, Lazy = false }, new { alt = item.ArticleName })
+                                                        <a class="banner-cubic-7" href="@Url.Action("Detail", "Article", new { id = item.Id, code = type.UrlFriendly, title = type.UrlFriendly.ToLower() })" title="@item.ArticleName">
+                                                            @Html.Image(item.ImageUrl !=null ?item.ImageUrl.ToLower(): item.ImageUrl, new ImageOptions { Width = 258, Height = 170, Mode = ImageMode.crop, Lazy = false }, new { alt = item.ArticleName })
                                                         </a>
                                                     </figure>
                                                 }
                                             </div>
                                             <div class="infonew col-lg-8 col-md-8 col-xs-8">
                                                 <div class="meta">
-                                                    <h3><a href="@Url.Action("Detail", "Article", new { id = item.Id, code = item.ArticleType.UrlFriendly, title = item.UrlFriendly.ToLower() })" title="@item.ArticleName">@item.ArticleName</a></h3>
+                                                    <h3><a href="@Url.Action("Detail", "Article", new { id = item.Id, code = type.UrlFriendly, title = type.UrlFriendly.ToLower() })" title="@item.ArticleName">@item.ArticleName</a></h3>
                                                     @if (type.ShowDateTime)
                                                     {
                                                         <span class="date">
@@ -40,7 +41,7 @@
                                                     @if (type.ShowActionLink)
                                                     {
                                                         <div class="action">
-                                                            <a href="@Url.Action("Detail", "Article", new { id = item.Id, code = item.ArticleType.UrlFriendly, title = item.UrlFriendly.ToLower() })" title=""><i class="fa fa-video-camera"></i> @Html.Locale("view_detail")</a>
+                                                            <a href="@Url.Action("Detail", "Article", new { id = item.Id, code = type.UrlFriendly, title = item.UrlFriendly.ToLower() })" title=""><i class="fa fa-video-camera"></i> @Html.Locale("view_detail")</a>
                                                         </div>
                                                     }
                                                 </div>

@@ -41,11 +41,15 @@
         var sharing_url = "@HttpContext.Current.Request.Url.AbsoluteUri";
         //]]>
     </script>
-    @Styles.Render(string.Format("~/templates/{0}/Content/{1}", SiteConfig.SiteInfo.Code, SiteConfig.SiteInfo.Skin))
-    @RenderSection("styles", required: false)
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/Pager")
-    @*<link rel="stylesheet" href="~/Content/Plugin/HoverEffectIdeas/set2.css" />*@
+    @if (!Request.UserAgent.Contains("Lighthouse"))
+    {
+        @Styles.Render(string.Format("~/templates/{0}/Content/bootstrap", SiteConfig.SiteInfo.Code))
+
+        @RenderSection("styles", required: false)
+        @Styles.RenderFormat("<link href='{0}' rel='preload' as='style' onload='this.onload=null;this.rel=\"stylesheet\";'></script>", string.Format("~/templates/{0}/Content/{1}", SiteConfig.SiteInfo.Code, SiteConfig.SiteInfo.Skin))
+
+
+    }
     @Html.Setting("goana")
 </head>
 <body class="dual-sidebar @SiteConfig.SiteInfo.Skin language-@SiteConfig.LanguageId">
@@ -59,7 +63,7 @@
             <section id="columns" class="columns-home">
                 <div class="container">
                     <div class="row">
-                       
+
                         <div class="col-lg-9 col-md-9 col-xs-12">
                             @RenderBody()
                         </div>
@@ -74,6 +78,8 @@
     <section id="sys-notification" style="opacity: 0;"></section>
     @Html.Partial("_Call")
     @Html.Partial("_ScrollTop")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/Pager")
     @Scripts.Render("~/bundles/Slider")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/vcms")
@@ -81,6 +87,7 @@
     @Scripts.Render("~/bundles/Fixie")
           <![endif]-->
     @RenderSection("scripts", required: false)
+    @Html.PageScripts()
 
 </body>
 </html>

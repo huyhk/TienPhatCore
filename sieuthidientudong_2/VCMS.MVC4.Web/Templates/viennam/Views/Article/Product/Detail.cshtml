@@ -377,44 +377,8 @@
 
         </div>
     </article>
-    @*@Html.Action("Other", "Article", new { id = Model.Id, typeid = Model.ArticleTypeId, categoryId = category != null ? category.Id : 0, pageSize = 6, includeFlags = ArticleIncludeFlags.ARTICLE_DETAIL | ArticleIncludeFlags.ARTICLE_TYPE | ArticleIncludeFlags.PRICES | ArticleIncludeFlags.PROPERTIES })*@
-    var catId = Model.Categories.FirstOrDefault(a => a.ArticleTypeId == 2) != null ? Model.Categories.FirstOrDefault(a => a.ArticleTypeId == 2).Id : 0;
-    var itemCounts = catId == 0 ? Article.CountByType(Model.ArticleType.Id, SiteConfig.LanguageId) : Article.CountByCategory(catId, SiteConfig.LanguageId) - 1;
+    @Html.Action("Other", "Article", new { id = Model.Id, typeid = Model.ArticleTypeId, categoryId = category != null ? category.Id : 0, pageSize = 6, includeFlags = ArticleIncludeFlags.ARTICLE_DETAIL | ArticleIncludeFlags.ARTICLE_TYPE | ArticleIncludeFlags.PRICES | ArticleIncludeFlags.PROPERTIES })
 
-    <div id="other-product-content" class="dike"></div>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/Scripts/jquery.pager.js"></script>
-
-    <script>
-            var other_url = '@Html.Raw(Url.Action("Other", "Article", new { id = Model.Id, typeid = Model.ArticleType.Id, categoryId = catId, pageIndex=1, pageSize = 20, viewPath = Model.ArticleType.Code, includeFlags = ArticleIncludeFlags.ARTICLE_DETAIL | ArticleIncludeFlags.ARTICLE_TYPE | ArticleIncludeFlags.PRICES | ArticleIncludeFlags.PROPERTIES }))';
-
-            $("#pager").pager({
-                href: other_url,
-                itemCount: '@itemCounts',
-                pageSize: 20,
-                length: 20,
-                pageIndex: 1,
-                pagerId: "pager",
-                callback: "other_loaded",
-                updateId: "#other-product-content"
-
-
-            })
-
-            function other_loaded(data, status, xhr) {
-                $("#other-product-content").html(data);
-            }
-
-			$(function(){
-				$.ajax({
-                url: other_url,
-
-            })
-              .done(function( data, status, xhr ) {
-                other_loaded(data,  status, xhr);
-              });
-			})
-    </script>
 
 
     if (Request.Cookies["article"] != null)
@@ -496,68 +460,72 @@
         </div>
     }
 }
-<script type="text/javascript">
-    $(document).ready(function () {
+@using (Html.BeginScripts())
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
 
 
-        $("#img_01").elevateZoom(
-            {
-                gallery: 'slidezoompage',
-                cursor: 'pointer',
-                galleryActiveClass: 'active',
-                imageCrossfade: true,
-                scrollZoom: true,
-                easing: true
+            $("#img_01").elevateZoom(
+                {
+                    gallery: 'slidezoompage',
+                    cursor: 'pointer',
+                    galleryActiveClass: 'active',
+                    imageCrossfade: true,
+                    scrollZoom: true,
+                    easing: true
+                });
+
+            $("#img_01").bind("click", function (e) {
+                var ez = $('#img_01').data('elevateZoom');
+                $.fancybox(ez.getGalleryList());
+                var src = $(this).find('img').attr('src');
+                $('#img_01').attr('src', src);
+
+                return false;
+            });
+            $("#slidezoompage a").bind("click", function (e) {
+                var src = $(this).find('img').attr('src');
+                $('#img_01').attr('src', src);
+
+                return false;
+            });
+        });
+
+    </script>
+    <script>
+        jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantitynum input');
+        jQuery('.quantitynum').each(function () {
+            var spinner = jQuery(this),
+                input = spinner.find('input[type="number"]'),
+                btnUp = spinner.find('.quantity-up'),
+                btnDown = spinner.find('.quantity-down'),
+                min = input.attr('min'),
+                max = input.attr('max');
+
+            btnUp.click(function () {
+                var oldValue = parseFloat(input.val());
+                if (oldValue >= max) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue + 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
             });
 
-        $("#img_01").bind("click", function (e) {
-            var ez = $('#img_01').data('elevateZoom');
-            $.fancybox(ez.getGalleryList());
-            var src = $(this).find('img').attr('src');
-            $('#img_01').attr('src', src);
+            btnDown.click(function () {
+                var oldValue = parseFloat(input.val());
+                if (oldValue <= min) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue - 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
 
-            return false;
         });
-        $("#slidezoompage a").bind("click", function (e) {
-            var src = $(this).find('img').attr('src');
-            $('#img_01').attr('src', src);
+    </script>
+}
 
-            return false;
-        });
-    });
-
-</script>
-<script>
-    jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantitynum input');
-    jQuery('.quantitynum').each(function () {
-        var spinner = jQuery(this),
-            input = spinner.find('input[type="number"]'),
-            btnUp = spinner.find('.quantity-up'),
-            btnDown = spinner.find('.quantity-down'),
-            min = input.attr('min'),
-            max = input.attr('max');
-
-        btnUp.click(function () {
-            var oldValue = parseFloat(input.val());
-            if (oldValue >= max) {
-                var newVal = oldValue;
-            } else {
-                var newVal = oldValue + 1;
-            }
-            spinner.find("input").val(newVal);
-            spinner.find("input").trigger("change");
-        });
-
-        btnDown.click(function () {
-            var oldValue = parseFloat(input.val());
-            if (oldValue <= min) {
-                var newVal = oldValue;
-            } else {
-                var newVal = oldValue - 1;
-            }
-            spinner.find("input").val(newVal);
-            spinner.find("input").trigger("change");
-        });
-
-    });
-</script>

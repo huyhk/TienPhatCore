@@ -554,9 +554,10 @@ namespace VCMS.MVC4.Web.Controllers
                         Flag = (ArticleFlags)Enum.Parse(typeof(ArticleFlags), Request["flag"]);
                 }
                 //var model = Article.GetByType(typeId, SiteConfig.LanguageId, flags: Flag, pageIndex: pageIndex, pageSize: pageSize, sortOrder: sortOrder, direction: direction, includeflags: includeFlags, resultFlag: ArticleResultFlags.ALL);
-                var query = db.Articles.Include(a => a.ArticleDetail)
-                    //.Include(a => a.ArticleType.ArticleTypeDetail)
-                    .OrderBy(a => a.SortOrder).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                var query = db.Articles.Include(a => a.ArticleDetail.Select(ad=>ad.Body))
+                    //.Include(a => a.ArticleType.ArticleTypeDetail).
+                    .Where(a => a.ArticleTypeId == typeId)
+                    .OrderBy(a => a.SortOrder).Skip((pageIndex - 1) * pageSize).Take(pageSize);  
 
                 //var items = db.Articles.Include(a => a.ArticleDetail)
                 //    .Include(a => a.ArticleType.ArticleTypeDetail)
@@ -564,15 +565,15 @@ namespace VCMS.MVC4.Web.Controllers
                 //    .OrderBy(a => a.SortOrder).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 
                 if (typeId == 1)
-                    query = db.Articles.Include(a => a.ArticleDetail)
+                    query = db.Articles.Include(a => a.ArticleDetail.Select(ad => ad.Body))
                         //.Include(a => a.ArticleType.ArticleTypeDetail)
-                        .Where(a => a.ArticleTypeId == typeId)
+                        .Where(a => a.ArticleTypeId == typeId) 
                         .OrderByDescending(a => a.DateCreated)
                         .Skip((pageIndex - 1) * pageSize).Take(pageSize);//.ToList();
                 if (typeId == 2)
                 {
                     query = db.Articles
-                    .Include(a => a.ArticleDetail)
+                    .Include(a => a.ArticleDetail.Select(ad => ad.Body))
                     //.Include(a => a.ArticleType.ArticleTypeDetail)
                     .Include(a => a.Prices.Select(p => p.Currency))
                     .Include(a => a.PropertyValues.Select(p => p.Property))

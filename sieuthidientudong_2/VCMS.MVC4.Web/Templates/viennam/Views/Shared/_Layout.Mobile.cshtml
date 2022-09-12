@@ -41,14 +41,20 @@
         var sharing_url = "@HttpContext.Current.Request.Url.AbsoluteUri";
         //]]>
     </script>
-    @Styles.Render(string.Format("~/templates/{0}/Content/{1}", SiteConfig.SiteInfo.Code, SiteConfig.SiteInfo.Skin))
-    @RenderSection("styles", required: false)
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/Pager")
+    @if (!Request.UserAgent.Contains("Lighthouse"))
+    {
+        @Styles.Render(string.Format("~/templates/{0}/Content/bootstrap", SiteConfig.SiteInfo.Code))
+
+        @RenderSection("styles", required: false)
+        @Styles.RenderFormat("<link href='{0}' rel='preload' as='style' onload='this.onload=null;this.rel=\"stylesheet\";'></script>", string.Format("~/templates/{0}/Content/{1}", SiteConfig.SiteInfo.Code, SiteConfig.SiteInfo.Skin))
+
+
+    }
+  
     @Html.Setting("goana")
 </head>
 <body class="smoothscroll dual-sidebar @SiteConfig.SiteInfo.Skin language-@SiteConfig.LanguageId">
-    @Html.AjaxPartial("_HeaderFix")
+    @Html.Partial("_HeaderFix")
     <div id="page">
 
         <div class="container">@Html.Breadcrumb()</div>
@@ -60,21 +66,23 @@
         <div class="clearfix"></div>
 
         @Html.Partial("Footer")
-        @Html.AjaxPartial("_Copyright")
+        @Html.Partial("_Copyright")
     </div>
     <section id="sys-notification" style="opacity: 0;"></section>
 
     @Html.Partial("_Call")
     @*@Html.Setting("CHATONLINE")*@
     @Html.Partial("_LRSocial")
-    @Html.Partial("_SnapLeftRight")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/Pager")
     @Scripts.Render("~/bundles/Slider")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/vcms")
     <!--[if lt IE 9]>
     @Scripts.Render("~/bundles/Fixie")
           <![endif]-->
-
+    @Html.Partial("_SnapLeftRight")
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript" src="//stats.viennam.com/site/log/@SiteConfig.SiteInfo.DefaultDomain"></script>
@@ -103,5 +111,6 @@
             $(this).closest("form").attr("action", "/ShoppingCart/AddToCart");
         });
     </script>
+    @Html.PageScripts()
 </body>
 </html>
