@@ -51,21 +51,21 @@
 }
 <body class="dual-sidebar language-@SiteConfig.LanguageId">
     @Html.Setting("body_script")
-    @Html.AjaxPartial("_HeaderTop")
-    @Html.Partial("_MenuTop")
+    @Html.Partial("_HeaderTop")
+    @Html.Partial("_MenuTop")  
     <div id="page">
-        @*@Html.Widget("Banner")*@
+        @*@Html.Widget("Banner")*@   
         @Html.Partial("_BannerSimple", barner)
         <section id="columns">
             <div class="container">
                 @*@Html.Partial("Slider2")*@
                 @*@Html.WidgetGroup("MainHome")*@
                 @RenderBody()
-            </div>
+            </div>  
         </section>
         <div class="clearfix"></div>
         @Html.Partial("Footer")
-        @Html.AjaxPartial("_Copyright")
+        @Html.Partial("_Copyright")
     </div>
 
     @Html.Partial("_Call")
